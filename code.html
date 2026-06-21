@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AMI Connect - Sales Hub Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed": "#cfe5ff",
+                        "error": "#ba1a1a",
+                        "outline": "#737688",
+                        "surface-variant": "#dfe3e7",
+                        "on-primary-fixed-variant": "#003ab2",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "surface": "#f6fafe",
+                        "tertiary": "#545656",
+                        "secondary-fixed-dim": "#99cbff",
+                        "outline-variant": "#c3c5d9",
+                        "on-secondary-container": "#004673",
+                        "surface-container-highest": "#dfe3e7",
+                        "background": "#f6fafe",
+                        "surface-container": "#eaeef2",
+                        "on-primary-container": "#f0f0ff",
+                        "secondary-container": "#69b6fd",
+                        "surface-bright": "#f6fafe",
+                        "surface-container-high": "#e4e9ed",
+                        "secondary": "#00629d",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#d6dade",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#1f5eff",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-secondary-fixed-variant": "#004a78",
+                        "tertiary-container": "#6d6e6e",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#001d34",
+                        "surface-tint": "#004ee8",
+                        "surface-container-low": "#f0f4f8",
+                        "primary": "#0046d4",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2c3134",
+                        "on-tertiary-container": "#f1f1f2",
+                        "on-primary-fixed": "#001550",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#b6c4ff",
+                        "inverse-on-surface": "#edf1f5",
+                        "primary-fixed": "#dce1ff",
+                        "on-surface-variant": "#434656",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-surface": "#171c1f",
+                        "on-background": "#171c1f"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "base": "8px",
+                        "gutter": "24px"
+                    },
+                    fontFamily: {
+                        "label-sm": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "title-md": ["Hanken Grotesk"],
+                        "body-md": ["Manrope"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-xl": ["Hanken Grotesk"]
+                    },
+                    fontSize: {
+                        "label-sm": ["13px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "title-md": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "display-xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-top: 1px solid rgba(255, 255, 255, 0.8);
+            border-left: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 40px -10px rgba(0, 70, 212, 0.05);
+        }
+        .glass-card {
+            background: rgba(246, 250, 254, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 24px -8px rgba(0, 70, 212, 0.08);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px -8px rgba(0, 70, 212, 0.12);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #0046d4, #69b6fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .mesh-bg {
+            background-color: #f6fafe;
+            background-image: 
+                radial-gradient(at 40% 20%, hsla(216,100%,94%,1) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, hsla(211,100%,92%,1) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, hsla(215,100%,95%,1) 0px, transparent 50%);
+        }
+        .circular-progress {
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            transition: stroke-dashoffset 1s ease-out;
+        }
+    </style>
+</head>
+<body class="mesh-bg text-on-surface min-h-screen font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto bg-surface/80 backdrop-blur-xl shadow-sm">
+<div class="flex items-center gap-8">
+<img alt="AMI Connect Logo" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2oA9T7fW5mqkN9Kl0c5iY2nO3N2eyB9mbaBpPtQyllA0quTWfBr_cXm6NEzMqhxtzFppuf7THZ0UaWyqBsR2zcIwWkdeMszE6F2B8gcfys12u0agiX76dUntg3X-xnHbtIcXcWX8EuzF0Bsgn794TDupvBmPpq3Rwn3xrL2I0hP72e9dmhUMR8ID_VpNGJXMh8Loazl51rjdhivL2zKRbUlZhfr-3ABw1DyIeH-mcwDaOhDeAuOQDlH7EfhEOc9QF6XMtWRLqWb0"/>
+<div class="hidden md:flex gap-6">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-title-md text-title-md opacity-80 scale-95 transition-all" href="#">Dashboard</a>
+<a class="text-on-surface-variant font-medium hover:text-primary-container transition-colors duration-200 font-title-md text-title-md" href="#">AI Coach</a>
+<a class="text-on-surface-variant font-medium hover:text-primary-container transition-colors duration-200 font-title-md text-title-md" href="#">Curriculum</a>
+<a class="text-on-surface-variant font-medium hover:text-primary-container transition-colors duration-200 font-title-md text-title-md" href="#">Playbook</a>
+<a class="text-on-surface-variant font-medium hover:text-primary-container transition-colors duration-200 font-title-md text-title-md" href="#">Objections</a>
+<a class="text-on-surface-variant font-medium hover:text-primary-container transition-colors duration-200 font-title-md text-title-md" href="#">Resources</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">search</span></button>
+<div class="hidden md:flex items-center gap-3">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">help</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">smart_toy</span></button>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-sm text-label-sm shadow-md hover:bg-primary-container transition-colors">Get Started</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto space-y-gutter">
+<!-- Hero Section -->
+<section class="glass-panel rounded-xl relative overflow-visible"><div class="absolute -right-12 -top-12 w-40 h-40 bg-secondary-container/20 rounded-full blur-2xl z-10"></div><div class="relative z-20 w-full p-8 md:p-12">
+<h1 class="font-display-xl text-display-xl text-on-surface mb-4">Confidence Through <span class="gradient-text">Connection</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Helping every child build confidence through English. Welcome back, Sarah. Let's make an impact today.</p>
+<div class="flex gap-4">
+<button class="bg-gradient-to-r from-primary to-secondary-container text-on-primary px-6 py-3 rounded-lg font-label-sm text-label-sm shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+<span class="material-symbols-outlined" style='font-variation-settings: "FILL" 1;'>play_arrow</span>
+                        Start Morning Brief
+                    </button>
+</div>
+</div>
+</section>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column (Wider) -->
+<div class="lg:col-span-8 space-y-gutter">
+<!-- AI Coach Highlight -->
+<div class="glass-card rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute -right-12 -top-12 w-40 h-40 bg-secondary-container/20 rounded-full blur-2xl group-hover:bg-primary/20 transition-colors duration-500"></div>
+<div class="flex items-start justify-between mb-6 relative z-10">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" style='font-variation-settings: "FILL" 1;'>smart_toy</span>
+</div>
+<div>
+<h2 class="font-title-md text-title-md text-on-surface">AI Coach Sessions</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Your personalized training environment</p>
+</div>
+</div>
+<span class="bg-secondary-container/30 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm">Recommended</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
+<div class="bg-white/50 p-4 rounded-lg border border-white/50">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant mb-2 uppercase tracking-wider">Today's Focus</h3>
+<p class="font-title-md text-title-md text-primary mb-1">Handling Price Objections</p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Practice navigating value discussions with hesitant parents.</p>
+<button class="text-primary font-label-sm text-label-sm flex items-center gap-1 hover:text-primary-container transition-colors">
+                                Start Session <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="bg-white/50 p-4 rounded-lg border border-white/50">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant mb-2 uppercase tracking-wider">Recent Feedback</h3>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary" style='font-variation-settings: "FILL" 1;'>star</span>
+<span class="material-symbols-outlined text-secondary" style='font-variation-settings: "FILL" 1;'>star</span>
+<span class="material-symbols-outlined text-secondary" style='font-variation-settings: "FILL" 1;'>star</span>
+<span class="material-symbols-outlined text-secondary" style='font-variation-settings: "FILL" 1;'>star</span>
+<span class="material-symbols-outlined text-surface-variant" style='font-variation-settings: "FILL" 1;'>star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Great tone matching, work on pausing before presenting solutions.</p>
+</div>
+</div>
+</div>
+<!-- Curriculum & Scripts Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Latest Curriculum -->
+<div class="glass-panel rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-title-md text-title-md text-on-surface">Curriculum Updates</h2>
+<button class="text-primary hover:text-primary-container"><span class="material-symbols-outlined">open_in_new</span></button>
+</div>
+<div class="space-y-4">
+<a class="block p-3 rounded-lg hover:bg-white/50 transition-colors border border-transparent hover:border-white/50" href="#">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface">Phonics Level 2 Refresh</h4>
+<p class="text-xs text-on-surface-variant">Updated 2 days ago</p>
+</div>
+</div>
+</a>
+<a class="block p-3 rounded-lg hover:bg-white/50 transition-colors border border-transparent hover:border-white/50" href="#">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">record_voice_over</span>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface">Conversational Fluency Prep</h4>
+<p class="text-xs text-on-surface-variant">Updated 1 week ago</p>
+</div>
+</div>
+</a>
+</div>
+</div>
+<!-- Top Scripts -->
+<div class="glass-panel rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-title-md text-title-md text-on-surface">Top Scripts</h2>
+<button class="text-primary hover:text-primary-container"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+<div class="space-y-3">
+<button class="w-full text-left p-3 rounded-lg bg-white/40 border border-white/60 hover:bg-white/60 transition-colors flex justify-between items-center group">
+<span class="font-body-md text-body-md text-on-surface">The "Value vs Cost" Pivot</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">content_copy</span>
+</button>
+<button class="w-full text-left p-3 rounded-lg bg-white/40 border border-white/60 hover:bg-white/60 transition-colors flex justify-between items-center group">
+<span class="font-body-md text-body-md text-on-surface">Introductory Call Hook</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">content_copy</span>
+</button>
+<button class="w-full text-left p-3 rounded-lg bg-white/40 border border-white/60 hover:bg-white/60 transition-colors flex justify-between items-center group">
+<span class="font-body-md text-body-md text-on-surface">Following Up on Trials</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (Narrower) -->
+<div class="lg:col-span-4 space-y-gutter">
+<!-- Onboarding Progress -->
+<div class="glass-panel rounded-xl p-6 text-center">
+<h2 class="font-title-md text-title-md text-on-surface mb-6">Onboarding Progress</h2>
+<div class="relative w-32 h-32 mx-auto mb-6">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<!-- Background circle -->
+<circle cx="50" cy="50" fill="none" r="45" stroke="#e4e9ed" stroke-width="8"></circle>
+<!-- Progress circle -->
+<circle class="circular-progress" cx="50" cy="50" fill="none" r="45" stroke="#0046d4" stroke-linecap="round" stroke-width="8" style="stroke-dashoffset: 84.9;"></circle>
+</svg>
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+<span class="font-display-xl text-display-xl text-primary leading-none">70</span>
+<span class="text-xs text-on-surface-variant block">%</span>
+</div>
+</div>
+<div class="space-y-2 text-left">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" style='font-variation-settings: "FILL" 1;'>check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-sm">Product Knowledge</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" style='font-variation-settings: "FILL" 1;'>check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-sm">System Setup</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-sm">radio_button_unchecked</span>
+<span class="font-body-md text-body-md text-on-surface font-medium text-sm">Mock Calls (2/5)</span>
+</div>
+</div>
+</div>
+<!-- Recent Objections List -->
+<div class="glass-card rounded-xl p-6">
+<h2 class="font-title-md text-title-md text-on-surface mb-4">Trending Objections</h2>
+<p class="text-xs text-on-surface-variant mb-4">What parents are saying this week</p>
+<div class="space-y-4">
+<div class="bg-surface p-3 rounded-lg border border-surface-variant relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+<h4 class="font-label-sm text-label-sm text-on-surface mb-1">"We don't have time right now."</h4>
+<p class="text-xs text-on-surface-variant mb-2">Frequency: High</p>
+<button class="text-primary text-xs font-semibold hover:underline">View AI Rebuttals</button>
+</div>
+<div class="bg-surface p-3 rounded-lg border border-surface-variant relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-container"></div>
+<h4 class="font-label-sm text-label-sm text-on-surface mb-1">"Is online as good as in-person?"</h4>
+<p class="text-xs text-on-surface-variant mb-2">Frequency: Medium</p>
+<button class="text-primary text-xs font-semibold hover:underline">View AI Rebuttals</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Animate progress circle on load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const circle = document.querySelector('.circular-progress');
+                if(circle) {
+                    // 70% of 283 (circumference)
+                    const offset = 283 - (283 * 0.70);
+                    circle.style.strokeDashoffset = offset;
+                }
+            }, 100);
+        });
+    </script>
+</body></html>
